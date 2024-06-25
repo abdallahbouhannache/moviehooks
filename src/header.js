@@ -1,8 +1,17 @@
 import React, { useState } from "react";
+import { useMovieContext } from './Moviecontext'; // Import the updated hook
 import "./css/header.css";
 
 function Header(params) {
   const [headTitle, setHtitle] = useState("Best Movies");
+  const { setCategory } = useMovieContext();
+
+  const CategoryChange = (newCategory) => {
+    setCategory(newCategory);
+    console.log("selectcat");
+  }
+
+
   return (
     <div className="wrphead">
       <div className="dropdown">
@@ -21,13 +30,13 @@ function Header(params) {
           className="dropdown-menu"
           aria-labelledby="dropdownMenuButton"
         >
-          <a className="dropdown-item" href="#">
+          <a className="dropdown-item" href="#" onClick={() => CategoryChange('movie')}>
             Action
           </a>
-          <a className="dropdown-item" href="#">
+          <a className="dropdown-item" href="#" onClick={() => CategoryChange('series')}>
             drama
           </a>
-          <a className="dropdown-item" href="#">
+          <a className="dropdown-item" href="#" onClick={() => CategoryChange('episode')}>
             comedy
           </a>
         </div>
@@ -38,12 +47,12 @@ function Header(params) {
         <h1>{headTitle}</h1>
       </nav>
       <div className="authlinks">
-        <a className="link reg" href="#">
+        {/* <a className="link reg" href="#">
           Register
         </a>
         <a className="link login" href="#">
           Login
-        </a>
+        </a> */}
       </div>
     </div>
   );
